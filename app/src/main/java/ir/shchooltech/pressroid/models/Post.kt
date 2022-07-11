@@ -1,4 +1,4 @@
 package ir.shchooltech.pressroid.models
 
-class Post {
+open class Post {
 }
