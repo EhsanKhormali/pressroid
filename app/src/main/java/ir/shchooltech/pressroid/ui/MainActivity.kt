@@ -1,6 +1,7 @@
 package ir.shchooltech.pressroid.ui
 
 import android.app.SearchManager
+import android.content.ComponentName
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -9,6 +10,7 @@ import androidx.appcompat.widget.SearchView
 import androidx.core.view.size
 import dagger.hilt.android.AndroidEntryPoint
 import ir.shchooltech.pressroid.R
+import ir.shchooltech.pressroid.SearchResultsActivity
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -22,9 +24,10 @@ class MainActivity : AppCompatActivity() {
         //associate searchable configuration with the searchView
         val searchManager=getSystemService(Context.SEARCH_SERVICE) as SearchManager
         (menu.findItem(R.id.app_bar_search).actionView as SearchView).apply {
-            isIconified=true
-            maxWidth= Int.MAX_VALUE
-            setSearchableInfo(searchManager.getSearchableInfo(componentName))
+            setIconifiedByDefault(false)
+            setSearchableInfo(searchManager.getSearchableInfo(ComponentName(this@MainActivity,SearchResultsActivity::class.java)))
+            queryHint="search products"
+
         }
         return true
     }
