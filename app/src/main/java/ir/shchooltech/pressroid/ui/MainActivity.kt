@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import androidx.appcompat.widget.SearchView
+import androidx.core.view.size
 import dagger.hilt.android.AndroidEntryPoint
 import ir.shchooltech.pressroid.R
 
@@ -21,6 +22,8 @@ class MainActivity : AppCompatActivity() {
         //associate searchable configuration with the searchView
         val searchManager=getSystemService(Context.SEARCH_SERVICE) as SearchManager
         (menu.findItem(R.id.app_bar_search).actionView as SearchView).apply {
+            isIconified=true
+            maxWidth= Int.MAX_VALUE
             setSearchableInfo(searchManager.getSearchableInfo(componentName))
         }
         return true
