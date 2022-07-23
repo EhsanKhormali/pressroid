@@ -2,7 +2,7 @@
 <resources>
     <string name="app_name">پرس روید</string>
     <string name="bottom_nav_home">خانه</string>
-    <string name="bottom_nav_categories">دسته بندی ها</string>
+    <string name="bottom_nav_category">دسته بندی ها</string>
     <string name="bottom_nav_cart">سبد خرید</string>
     <string name="bottom_nav_my_account">حساب من</string>
     <string name="top_search_box">جستجو در محصولات</string>

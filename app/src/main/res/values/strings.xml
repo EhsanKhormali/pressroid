@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Pressroid</string>
     <string name="bottom_nav_home">Home</string>
-    <string name="bottom_nav_categories">Categories</string>
+    <string name="bottom_nav_category">Category</string>
     <string name="bottom_nav_cart">Cart</string>
     <string name="bottom_nav_my_account">My account</string>
     <string name="top_search_box">Search products</string>
