@@ -9,13 +9,14 @@ import android.view.Menu
 import android.view.View
 import android.widget.ImageView
 import androidx.appcompat.widget.SearchView
-import androidx.constraintlayout.helper.widget.Carousel
-import androidx.constraintlayout.motion.widget.MotionLayout
 import com.google.android.material.textview.MaterialTextView
 import com.squareup.picasso.Picasso
 import dagger.hilt.android.AndroidEntryPoint
 import ir.schooltech.pressroid.SearchResultsActivity
 import schooltech.pressroid.R
+import ir.schooltech.carousel.Carousel
+import ir.schooltech.pressroid.models.CarouselItem
+import ir.schooltech.pressroid.ui.adapter.MainCarouselAdapter
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -28,55 +29,21 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         searchText=findViewById(R.id.app_bar_search_text_hint)
-        val motionLayout:MotionLayout=findViewById(R.id.carousel_motion_layout)
-        /*motionLayout.setTransitionListener(object : MotionLayout.TransitionListener{
-            override fun onTransitionStarted(
-                motionLayout: MotionLayout?,
-                startId: Int,
-                endId: Int
-            ) {
-                TODO("Not yet implemented")
-            }
-
-            override fun onTransitionChange(
-                motionLayout: MotionLayout?,
-                startId: Int,
-                endId: Int,
-                progress: Float
-            ) {
-                TODO("Not yet implemented")
-            }
-
-            override fun onTransitionCompleted(motionLayout: MotionLayout?, currentId: Int) {
-                TODO("Not yet implemented")
-            }
-
-            override fun onTransitionTrigger(
-                motionLayout: MotionLayout?,
-                triggerId: Int,
-                positive: Boolean,
-                progress: Float
-            ) {
-                TODO("Not yet implemented")
-            }
-
-        })*/
         carousel=findViewById(R.id.main_carousel)
-        carousel.setAdapter(object : Carousel.Adapter{
-            override fun count(): Int {
-                return 5
-            }
+        val carouselItems=ArrayList<CarouselItem>()
+        carouselItems.apply {
+            add(CarouselItem("https://picsum.photos/400/200","1",""))
+            add(CarouselItem("https://picsum.photos/402/201","2",""))
+            add(CarouselItem("https://picsum.photos/404/202","3",""))
+            add(CarouselItem("https://picsum.photos/406/203","4",""))
+            add(CarouselItem("https://picsum.photos/400/200","5",""))
+        }
+        carousel.apply {
+            adapter = MainCarouselAdapter(carouselItems)
+            set3DItem(true)
+            setInfinite(true)
+        }
 
-            override fun populate(view: View?, index: Int) {
-                if(view is ImageView)
-                Picasso.get().load("https://picsum.photos/300/200").into(view)
-            }
-
-            override fun onNewItem(index: Int) {
-
-            }
-
-        })
         //associate searchable configuration with the searchView
         val searchManager=getSystemService(Context.SEARCH_SERVICE) as SearchManager
         searchView=findViewById(R.id.app_bar_search_view)

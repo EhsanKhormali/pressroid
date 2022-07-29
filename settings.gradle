@@ -14,3 +14,4 @@ dependencyResolutionManagement {
 }
 rootProject.name = "Pressroid"
 include ':app'
+include ':app:carousel'
