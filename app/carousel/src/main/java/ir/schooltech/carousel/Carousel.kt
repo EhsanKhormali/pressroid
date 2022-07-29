@@ -8,12 +8,15 @@ import androidx.recyclerview.widget.RecyclerView
 
 class Carousel(context: Context, attributeSet: AttributeSet) : RecyclerView(context, attributeSet) {
 
-    private lateinit var loopHandler: LoopHandler
+
     /** Create layout manager builder so that we can easily add more methods to it */
     private var carouselLayoutManagerBuilder: CarouselLayoutManager.Builder =
         CarouselLayoutManager.Builder()
 
     private var layoutManagerState: Parcelable? = null
+
+    /** use for enabling auto scroll*/
+    private lateinit var loopHandler: LoopHandler
 
     companion object {
         private const val SAVE_SUPER_STATE = "super-state"
@@ -172,10 +175,19 @@ class Carousel(context: Context, attributeSet: AttributeSet) : RecyclerView(cont
     override fun setAdapter(adapter: Adapter<*>?) {
         super.setAdapter(adapter)
         restorePosition()
-        loopHandler = LoopHandler(1000, 2000, onLoop = {
-            this.smoothScrollToPosition(adapter?.itemCount?:0)
-
+        loopHandler = LoopHandler(0, 3000, onLoop = {
+            var currentPosition=(layoutManager as CarouselLayoutManager).getSelectedPosition()
+            if (currentPosition<(adapter?.itemCount?:0)-1) {
+                this.smoothScrollToPosition(currentPosition + 1)
+            }
+            else{
+                this.smoothScrollToPosition(0)
+            }
+            /*var center=this.width/2
+            (layoutManager as CarouselLayoutManager).scrollHorizontallyBy(center,this.Recycler(),State())*/
         })
         loopHandler.startAutoLooping()
     }
+
+
 }

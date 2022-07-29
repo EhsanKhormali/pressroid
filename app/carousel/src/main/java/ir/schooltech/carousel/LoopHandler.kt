@@ -18,7 +18,8 @@ class LoopHandler(
 
         timer = Timer()
         periodicTimerTask = PeriodicTimerTask()
-        timer?.scheduleAtFixedRate(periodicTimerTask, delay, period)
+        timer?.schedule(periodicTimerTask, delay, period)
+
     }
 
     /** Stops the periodic task. */

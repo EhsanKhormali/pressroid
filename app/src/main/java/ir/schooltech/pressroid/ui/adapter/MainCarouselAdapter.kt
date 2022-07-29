@@ -25,7 +25,7 @@ class MainCarouselAdapter (private var list : ArrayList<CarouselItem>): Recycler
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        Picasso.get().load(list[position].imageUrl).into(holder.image)
+        Picasso.get().load(list[position].imageUrl).placeholder(R.drawable.bryce_canyon).into(holder.image)
     }
 
     fun updateData(list: ArrayList<CarouselItem>) {

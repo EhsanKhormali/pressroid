@@ -78,6 +78,10 @@ class CarouselLayoutManager constructor(
     /** set to enable/disable scrolling in recyclerview */
     private var isScrollingEnabled = true
 
+    /** use for enabling auto scroll*/
+    private lateinit var loopHandler: LoopHandler
+
+
     /** Initialize all the attribute from the constructor and also apply some conditions */
     init {
         this.mInfinite = isLoop
@@ -436,7 +440,8 @@ class CarouselLayoutManager constructor(
         position: Int
     ) {
         //Loop does not support for smooth scrolling
-        if (mInfinite||!this::recycler.isInitialized || !this::state.isInitialized) return
+        //if (mInfinite||!this::recycler.isInitialized || !this::state.isInitialized) return
+        if (!this::recycler.isInitialized || !this::state.isInitialized) return
         val finalOffset = calculatePositionOffset(position)
         startScroll(mOffsetAll, finalOffset)
     }

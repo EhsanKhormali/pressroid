@@ -36,7 +36,7 @@ class MainActivity : AppCompatActivity() {
             add(CarouselItem("https://picsum.photos/402/201","2",""))
             add(CarouselItem("https://picsum.photos/404/202","3",""))
             add(CarouselItem("https://picsum.photos/406/203","4",""))
-            add(CarouselItem("https://picsum.photos/400/200","5",""))
+            add(CarouselItem("https://picsum.photos/408/204","5",""))
         }
         carousel.apply {
             adapter = MainCarouselAdapter(carouselItems)
