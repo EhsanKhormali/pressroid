@@ -23,21 +23,15 @@ class MainActivity : AppCompatActivity() {
     private lateinit var searchView:SearchView
     private lateinit var searchText:MaterialTextView
     lateinit var carousel:Carousel
-
+    val carouselItems=ArrayList<CarouselItem>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         searchText=findViewById(R.id.app_bar_search_text_hint)
         carousel=findViewById(R.id.main_carousel)
-        val carouselItems=ArrayList<CarouselItem>()
-        carouselItems.apply {
-            add(CarouselItem("https://picsum.photos/400/200","1",""))
-            add(CarouselItem("https://picsum.photos/402/201","2",""))
-            add(CarouselItem("https://picsum.photos/404/202","3",""))
-            add(CarouselItem("https://picsum.photos/406/203","4",""))
-            add(CarouselItem("https://picsum.photos/408/204","5",""))
-        }
+
+        getSampleData()
         carousel.apply {
             adapter = MainCarouselAdapter(carouselItems)
             set3DItem(true)
@@ -68,6 +62,16 @@ class MainActivity : AppCompatActivity() {
                     return true
                 }
             })
+        }
+    }
+
+    private fun getSampleData() {
+        carouselItems.apply {
+            add(CarouselItem("https://picsum.photos/400/200","1",""))
+            add(CarouselItem("https://picsum.photos/402/201","2",""))
+            add(CarouselItem("https://picsum.photos/404/202","3",""))
+            add(CarouselItem("https://picsum.photos/406/203","4",""))
+            add(CarouselItem("https://picsum.photos/408/204","5",""))
         }
     }
 
